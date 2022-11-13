@@ -4,12 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 public class DashBoardActivity extends AppCompatActivity {
 
-    Button btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting, btn_SignOut;
+     RelativeLayout btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,12 +76,12 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     private void addControls() {
-        btn_Chat = this.<Button>findViewById(R.id.button_Chat);
-        btn_Employee = this.<Button>findViewById(R.id.button_Employee);
-        btn_Setting = this.<Button>findViewById(R.id.button_Setting);
-        btn_Profile = this.<Button>findViewById(R.id.button_Profile);
-        btn_Task = this.<Button>findViewById(R.id.button_Task);
-        btn_TK = this.<Button>findViewById(R.id.button_TimeKeeping);
+        btn_Chat = this.<RelativeLayout>findViewById(R.id.button_Chat);
+        btn_Employee = this.<RelativeLayout>findViewById(R.id.button_Employee);
+        btn_Setting = this.<RelativeLayout>findViewById(R.id.button_Setting);
+        btn_Profile = this.<RelativeLayout>findViewById(R.id.button_Profile);
+        btn_Task = this.<RelativeLayout>findViewById(R.id.button_Task);
+        btn_TK = this.<RelativeLayout>findViewById(R.id.button_TimeKeeping);
 
     }
 }

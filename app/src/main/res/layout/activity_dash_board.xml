@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".DashBoardActivity">
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,64 +22,138 @@
             android:textSize="25sp"
             android:textStyle="bold" />
 
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/button_Task"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:padding="10dp">
 
-            <Button
-                android:id="@+id/button_Task"
-                android:layout_width="0dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_task"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/task"
+                android:layout_alignParentLeft="true"/>
+
+            <TextView
+                android:layout_toEndOf="@+id/img_task"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Task"/>
+                android:text="Task"
+                android:textSize="20dp"/>
+        </RelativeLayout>
 
-            <Button
-                android:id="@+id/button_Employee"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Employee"/>
-
-            <Button
-                android:id="@+id/button_Chat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Chat"/>
-
-        </LinearLayout>
-
-        <LinearLayout
+        <RelativeLayout
+            android:id="@+id/button_Employee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center">
+            android:padding="10dp">
 
-            <Button
-                android:id="@+id/button_Profile"
-                android:layout_width="0dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_employee"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/employee" />
+
+            <TextView
+                android:layout_toEndOf="@+id/img_employee"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Profile"/>
+                android:text="Employee"
+                android:textSize="20dp"/>
+        </RelativeLayout>
 
-            <Button
-                android:id="@+id/button_TimeKeeping"
-                android:layout_width="0dp"
+        <RelativeLayout
+            android:id="@+id/button_Chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_chat"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/chat" />
+
+            <TextView
+                android:layout_toEndOf="@+id/img_chat"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Time Keeping"/>
+                android:text="Chat"
+                android:textSize="20dp"/>
+        </RelativeLayout>
 
-            <Button
-                android:id="@+id/button_Setting"
-                android:layout_width="0dp"
+        <RelativeLayout
+            android:id="@+id/button_Profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_profile"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/profile" />
+
+            <TextView
+                android:layout_toEndOf="@+id/img_profile"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Setting"/>
+                android:text="Your profile"
+                android:textSize="20dp"/>
+        </RelativeLayout>
 
-        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/button_TimeKeeping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_timekeeper"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/timekeeper" />
+
+            <TextView
+                android:layout_toEndOf="@+id/img_timekeeper"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time Keeping"
+                android:textSize="20dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/button_Setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_setting"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/setting" />
+
+            <TextView
+                android:layout_toEndOf="@+id/img_setting"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Setting"
+                android:textSize="20dp"/>
+        </RelativeLayout>
 
     </LinearLayout>
     
