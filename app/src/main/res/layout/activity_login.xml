@@ -26,7 +26,7 @@
 
 
         <EditText
-            android:id="@+id/editText_UserName"
+            android:id="@+id/editText_UserName_Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -43,7 +43,7 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/editText_Password"
+            android:id="@+id/editText_Password_Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -51,7 +51,7 @@
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/button_SignIn"
+            android:id="@+id/button_SignIn_Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -59,7 +59,7 @@
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/button_SignUp"
+            android:id="@+id/button_SignUp_Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
