@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
+
 public class DashBoardActivity extends AppCompatActivity {
 
      RelativeLayout btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting;
@@ -63,6 +66,7 @@ public class DashBoardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DashBoardActivity.this, TimeKeepingActivity.class);
                 startActivity(intent);
+
             }
         });
 
