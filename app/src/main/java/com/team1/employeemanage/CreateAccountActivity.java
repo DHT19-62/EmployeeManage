@@ -117,7 +117,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         if (checkBox_employee.isChecked()){
             user_.put("level", "employee");
         }else {
-            if (checkBox_employee.isChecked()){
+            if (checkBox_manager.isChecked()){
                 user_.put("level", "manager");
             }else{
                 user_.put("level", "employee");
