@@ -3,10 +3,12 @@ package com.team1.employeemanage;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
@@ -25,10 +27,11 @@ import java.util.List;
 public class TaskActivity extends AppCompatActivity {
     private static boolean check = false;
     private Integer i = -1;
-    private String[] TitleTask;
-    private String[] DescTask;
+    private String[] TaskTitle;
+    private String[] TaskDes;
+    private String[] TaskID;
     private static TaskAdapter taskAdapter;
-    private static String CompanyID = "zrsvUCGsHpTNWmOgvZes";
+    public static String CompanyID = "zrsvUCGsHpTNWmOgvZes";
     private static String UserID = "9Xwvo7cqlJdNqs7HxPfPvgIxmQM2";
 
     private static FirebaseFirestore db;
@@ -56,10 +59,10 @@ public class TaskActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
-                            TitleTask = new String[task.getResult().size()];
-                            DescTask = new String[task.getResult().size()];
+                            TaskTitle = new String[task.getResult().size()];
+                            TaskDes = new String[task.getResult().size()];
+                            TaskID = new String[task.getResult().size()];
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d("DEBUG",document.getId());
                                 db.collection("Tasks").document(CompanyID).collection("AllTask")
                                         .document(document.getId()).collection("members").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                             @Override
@@ -74,8 +77,9 @@ public class TaskActivity extends AppCompatActivity {
                                                         }
                                                         if (check) {
                                                             i++;
-                                                            TitleTask[i] = document.get("title", String.class);
-                                                            DescTask[i] = document.get("content", String.class);
+                                                            TaskID[i] = document.getId();
+                                                            TaskTitle[i] = document.get("title", String.class);
+                                                            TaskDes[i] = document.get("des", String.class);
                                                             check = false;
                                                         }
                                                     }
@@ -93,10 +97,18 @@ public class TaskActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                taskAdapter = new TaskAdapter(TaskActivity.this,TitleTask,DescTask);
+                taskAdapter = new TaskAdapter(TaskActivity.this,TaskTitle,TaskDes);
                 listView = (ListView) findViewById(R.id.TaskList);
                 listView.setAdapter(taskAdapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                        Intent intent = new Intent(TaskActivity.this,TaskDetailActivity.class);
+                        intent.putExtra("TaskID",TaskID[position]);
+                        startActivity(intent);
+                    }
+                });
             }
-        }, 3000);
+        }, 2000);
     }
 }
