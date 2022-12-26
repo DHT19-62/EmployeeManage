@@ -8,9 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private EditText username, password;
+    TextView createaccount;
     private Button btn_SignIn;
 
     @Override
@@ -50,11 +53,21 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void addEvent() {
+
         btn_SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 SignInWithEmailAndPassword();
+            }
+        });
+
+        createaccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, CreateAccountActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -91,5 +104,6 @@ public class LoginActivity extends AppCompatActivity {
         btn_SignIn = this.<Button>findViewById(R.id.button_SignIn_Login);
         username = this.<EditText>findViewById(R.id.editText_UserName_Login);
         password = this.<EditText>findViewById(R.id.editText_Password_Login);
+        createaccount = findViewById(R.id.textView_SignUp_Login);
     }
 }

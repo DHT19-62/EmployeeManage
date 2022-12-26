@@ -51,7 +51,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editText_createaccount_lastname"
                 android:layout_centerInParent="true"
-                android:text="Email"/>
+                android:text="Email"
+                android:inputType="textEmailAddress"/>
 
             <EditText
                 android:id="@+id/editText_createaccount_email"
@@ -95,7 +96,29 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editText_createaccount_repassword"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Level:"/>
+
+                    <CheckBox
+                        android:id="@+id/checkbox_createaccount_employee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="employee"/>
+                    <CheckBox
+                        android:id="@+id/checkbox_createaccount_manager"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="manager"/>
+                </LinearLayout>
 
                 <Button
                     android:id="@+id/button_createaccount_signin"

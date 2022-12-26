@@ -58,12 +58,12 @@
             android:text="Sign In"
             android:textSize="15sp" />
 
-        <EditText
-            android:id="@+id/button_SignUp_Login"
+        <TextView
+            android:id="@+id/textView_SignUp_Login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Create a new account"
+            android:text="Create a new account!"
             android:textSize="10sp" />
 
 
