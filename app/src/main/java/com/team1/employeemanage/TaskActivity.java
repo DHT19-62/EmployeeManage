@@ -21,6 +21,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -31,8 +33,6 @@ public class TaskActivity extends AppCompatActivity {
     private String[] TaskDes;
     private String[] TaskID;
     private static TaskAdapter taskAdapter;
-    public static String CompanyID = "zrsvUCGsHpTNWmOgvZes";
-    private static String UserID = "9Xwvo7cqlJdNqs7HxPfPvgIxmQM2";
 
     private static FirebaseFirestore db;
     ListView listView;
@@ -54,7 +54,7 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     private void getAllTask() {
-        db.collection("Tasks").document(CompanyID).collection("AllTask").
+        db.collection("Tasks").document(DashBoardActivity.CompanyID).collection("AllTask").
                 get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -63,7 +63,7 @@ public class TaskActivity extends AppCompatActivity {
                             TaskDes = new String[task.getResult().size()];
                             TaskID = new String[task.getResult().size()];
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                db.collection("Tasks").document(CompanyID).collection("AllTask")
+                                db.collection("Tasks").document(DashBoardActivity.CompanyID).collection("AllTask")
                                         .document(document.getId()).collection("members").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                             @Override
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -71,7 +71,7 @@ public class TaskActivity extends AppCompatActivity {
                                                     for (QueryDocumentSnapshot documentSnapshot: task.getResult()){
                                                         List<String> membergroup = (List<String>) documentSnapshot.get("id");
                                                         for (int j = 0; j < membergroup.size(); j++) {
-                                                            if (membergroup.get(j).equals(UserID)){
+                                                            if (membergroup.get(j).equals(LoginActivity.UserID)){
                                                                 check = true;
                                                             }
                                                         }
@@ -97,6 +97,10 @@ public class TaskActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                // Định dạng lại mảng
+                TaskTitle = Arrays.copyOfRange(TaskTitle,0,i+1);
+                TaskDes = Arrays.copyOfRange(TaskDes,0,i+1);
+
                 taskAdapter = new TaskAdapter(TaskActivity.this,TaskTitle,TaskDes);
                 listView = (ListView) findViewById(R.id.TaskList);
                 listView.setAdapter(taskAdapter);
@@ -111,4 +115,5 @@ public class TaskActivity extends AppCompatActivity {
             }
         }, 2000);
     }
+
 }
