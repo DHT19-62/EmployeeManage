@@ -27,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username, password;
     TextView createaccount;
     private Button btn_SignIn;
+    public static String UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
+            UserID = currentUser.getUid();
             UpdateUI(currentUser);
         }
     }
@@ -83,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
+                            UserID = user.getUid();
+                            Log.d("USERID",UserID);
                             UpdateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

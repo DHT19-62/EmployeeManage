@@ -36,11 +36,19 @@ public class TaskDetailActivity extends AppCompatActivity {
 
         TaskID = getIntent().getStringExtra("TaskID");
 
+        initFireStore();
+        getTaskDetail();
+        showTaskDetail();
+
+    }
+
+    private void initFireStore() {
         FirebaseApp.initializeApp(TaskDetailActivity.this);
         db = FirebaseFirestore.getInstance();
+    }
 
-
-        DocumentReference docRef = db.collection("Tasks").document(TaskActivity.CompanyID).collection("AllTask").document(TaskID);
+    private void getTaskDetail() {
+        DocumentReference docRef = db.collection("Tasks").document(DashBoardActivity.CompanyID).collection("AllTask").document(TaskID);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -56,7 +64,9 @@ public class TaskDetailActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void showTaskDetail() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -73,6 +83,5 @@ public class TaskDetailActivity extends AppCompatActivity {
                 textView.setText(deadline);
             }
         }, 2000);
-
     }
 }
