@@ -3,11 +3,19 @@ package com.team1.employeemanage;
 public class Employee {
     private String firstname;
     private String lastname;
+    private String email;
     private String id;
 
     public Employee(String firstname, String lastname, String id) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.id = id;
+    }
+
+    public Employee(String firstname, String lastname, String email, String id) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
         this.id = id;
     }
 
@@ -33,5 +41,13 @@ public class Employee {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
