@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,15 +7,19 @@
     tools:context=".EmployeeActivity">
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textView_employee_Employee"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Employee Activity"
-        android:textSize="25sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_alignParentTop="true"
+        android:text="Employee"
+        android:textStyle="bold"
+        android:textSize="25sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recylerview_employee"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/textView_employee_Employee">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

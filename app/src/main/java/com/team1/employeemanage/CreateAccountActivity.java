@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -113,7 +114,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         user_.put("email", email.getText().toString());
         user_.put("password", password.getText().toString());
         user_.put("company", "");
-        user_.put("id", user.getUid().toString());
         if (checkBox_employee.isChecked()){
             user_.put("level", "employee");
         }else {
@@ -127,17 +127,16 @@ public class CreateAccountActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         db.collection("Users")
-                .add(user_)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                .document(user.getUid().toString())
+                .set(user_, SetOptions.merge())
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if(task.isSuccessful()){
+                            Log.d(TAG, "Luu tai khoan thanh cong");
+                        }else {
+                            Log.d(TAG, "Luu tai khoan that bai");
+                        }
                     }
                 });
     }
