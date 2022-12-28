@@ -8,6 +8,13 @@
     tools:context=".ProfileActivity">
 
     <TextView
+        android:id="@+id/Id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingLeft="5dp"
+        android:textSize="17sp"/>
+    <TextView
         android:id="@+id/Company"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,13 +42,7 @@
         android:paddingTop="10dp"
         android:paddingLeft="5dp"
         android:textSize="17sp"/>
-    <TextView
-        android:id="@+id/Id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:paddingLeft="5dp"
-        android:textSize="17sp"/>
+
     <TextView
         android:id="@+id/Level"
         android:layout_width="match_parent"
