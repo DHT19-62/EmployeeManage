@@ -15,11 +15,19 @@
         android:textStyle="bold"
         android:textSize="25sp" />
 
+    <Button
+        android:id="@+id/button_employee_Refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:text="refresh"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerview_employee"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView_employee_Employee">
+        android:layout_below="@+id/button_employee_Refresh">
 
     </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

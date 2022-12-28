@@ -41,8 +41,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Employee employee = lst_employees.get(position);
-        holder.lastname.setText(employee.getLastname());
-        holder.firstname.setText(employee.getFirstname());
+        holder.name.setText(employee.getFirstname() +" "+employee.getLastname());
+        holder.email.setText(employee.getEmail());
 
     }
 
@@ -53,17 +53,20 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private View itemview;
-        public TextView firstname;
-        public TextView lastname;
+
+        public TextView name, email;
         public Button delete;
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemview = itemView;
-            firstname = itemView.findViewById(R.id.textView_createaccount_firstname);
-            lastname = itemView.findViewById(R.id.textView_createaccount_lastname);
-            delete = itemView.findViewById(R.id.button_employeeitem_delete);
 
+            addControls();
+            addEvents();
+
+        }
+
+        private void addEvents() {
             //Xử lý khi nút Chi tiết được bấm
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -73,6 +76,12 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
                             .show();
                 }
             });
+        }
+
+        private void addControls() {
+            name = this.itemView.<TextView>findViewById(R.id.textView_employeeitem_name);
+            email = this.itemview.<TextView>findViewById(R.id.textView_employeeitem_email);
+            delete = this.itemView.<Button>findViewById(R.id.button_employeeitem_delete);
         }
     }
 }
