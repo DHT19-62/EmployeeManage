@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -22,6 +23,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
      private static FirebaseFirestore db;
      public static String CompanyID;
+     public static String Level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +31,17 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board);
 
         getSupportActionBar().hide();
-
-        addControls();
-        addEvents();
-
         initFireStore();
         getCompanyID();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                addControls();
+                addEvents();
+            }
+        },3000);
     }
 
     private void addEvents() {
@@ -54,13 +61,17 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         });
 
-        btn_Employee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DashBoardActivity.this, EmployeeActivity.class);
-                startActivity(intent);
-            }
-        });
+        if (Level.equals("manager")) {
+            btn_Employee.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(DashBoardActivity.this, EmployeeActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else {
+            btn_Employee.setForeground(getDrawable(R.color.shadow));
+        }
 
         btn_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +86,6 @@ public class DashBoardActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(DashBoardActivity.this, TimeKeepingActivity.class);
                 startActivity(intent);
-
             }
         });
 
@@ -109,10 +119,12 @@ public class DashBoardActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    CompanyID = document.get("companyId",String.class);
-                    Log.d("CompanyID",CompanyID);
+                    CompanyID = document.get("company",String.class);
+                    Level = document.get("level",String.class);
                 }
             }
         });
     }
+
+
 }
