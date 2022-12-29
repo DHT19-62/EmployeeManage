@@ -11,6 +11,10 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +25,21 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.List;
+
 public class TaskDetailActivity extends AppCompatActivity {
 
-    private String TaskID, host, status, deadline, title, content, HostCheck;
+    public static String TaskID, host, status, deadline, title, content, des, HostCheck;
+    public static String[] MembersIDList;
+    private static String[] EmployeeList;
+    private static boolean[] Check;
 
     private static FirebaseFirestore db;
-
     private TextView textView;
+    private ImageView imageView;
+    private RelativeLayout relativeLayout;
+    private ListView listView;
+    private EmployeeListAdapter employeeListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +50,16 @@ public class TaskDetailActivity extends AppCompatActivity {
 
         initFireStore();
         getTaskDetail();
+
         showTaskDetail();
 
     }
+
+//    @Override
+//    protected void onStart() {
+//        showTaskDetail();
+//        super.onStart();
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,11 +105,29 @@ public class TaskDetailActivity extends AppCompatActivity {
                     if (document.exists()) {
                         host = document.get("host",String.class);
                         HostCheck = host;
-                        host = getNamefromID(host);
+                        getNamefromID(host);
                         title = document.get("title",String.class);
                         content = document.get("content",String.class);
-                        status = "Status: " + document.get("status",String.class);
-                        deadline = "Deadline: " + document.get("deadline",String.class);
+                        status = document.get("status",String.class);
+                        deadline = document.get("deadline",String.class);
+                        des = document.get("des",String.class);
+                    }
+                }
+            }
+        });
+        docRef.collection("members").document("ID").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    List<String> templist = (List<String>) documentSnapshot.get("id");
+                    EmployeeList = new String[templist.size()];
+                    MembersIDList = new String[templist.size()];
+                    Check = new boolean[templist.size()];
+                    for (int i = 0; i < templist.size(); i++) {
+                        EmployeeList[i] = templist.get(i);
+                        MembersIDList[i] = templist.get(i);
+                        Check[i] = true;
                     }
                 }
             }
@@ -112,19 +149,71 @@ public class TaskDetailActivity extends AppCompatActivity {
                 textView.setText(status);
                 textView = (TextView) findViewById(R.id.Deadline);
                 textView.setText(deadline);
+                getEmailList();
+                onclickshowMembers();
             }
         }, 2000);
     }
 
-    private String getNamefromID(String ID) {
+    private void getNamefromID(String ID) {
         db.collection("Users").document(ID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 DocumentSnapshot documentSnapshot = task.getResult();
-                host = "Host: " + documentSnapshot.get("lastname",String.class) + " " + documentSnapshot.get("firstname",String.class);
+                host = documentSnapshot.get("lastname",String.class) + " " + documentSnapshot.get("firstname",String.class);
             }
         });
-        return host;
+    }
+
+    private void getEmailfromID(String ID, int index) {
+            db.collection("Users").document(ID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        EmployeeList[index] = documentSnapshot.get("email", String.class);
+                        Log.d("index", "i : " + index + " " + EmployeeList[index]);
+                    }
+                }
+            });
+    }
+
+    private void getEmailList() {
+        for (int i = 0; i < EmployeeList.length; i++) {
+            getEmailfromID(EmployeeList[i],i);
+        }
+    }
+
+    private boolean switches = false;
+    private void onclickshowMembers() {
+        imageView = (ImageView) findViewById(R.id.extend);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                relativeLayout = (RelativeLayout) findViewById(R.id.EmployeeFrame);
+                if (switches == false) {
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    switches = true;
+                } else {
+                    relativeLayout.setVisibility(View.INVISIBLE);
+                    switches = false;
+                }
+            }
+        });
+        setMemberList();
+    }
+
+    private void setMemberList() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("Meme","List: " + EmployeeList[0]);
+                listView = (ListView) findViewById(R.id.EmployeeList);
+                employeeListAdapter = new EmployeeListAdapter(TaskDetailActivity.this,EmployeeList,Check);
+                listView.setAdapter(employeeListAdapter);
+            }
+        },2000);
     }
 
 }

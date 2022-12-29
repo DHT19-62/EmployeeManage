@@ -59,12 +59,14 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         TaskID = getIntent().getStringExtra("TaskID");
+
         addcontrol();
         addevent();
         initFireStore();
         getEmployee();
+
         if (TaskID != null) {
-            Update();
+            UpdateTaskDetail();
         }
         onclickAdd();
     }
@@ -75,6 +77,9 @@ public class AddTaskActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (TaskID != null) {
+                    UpdateCheckedEmployee();
+                }
                 showEmployeeList();
             }
         },3000);
@@ -93,11 +98,18 @@ public class AddTaskActivity extends AppCompatActivity {
         EmployeeFrame = (RelativeLayout) findViewById(R.id.EmployeeFrame);
     }
 
+    private boolean switches = false;
     private void addevent() {
         Extend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EmployeeFrame.setVisibility(View.VISIBLE);
+                if (switches == false) {
+                    EmployeeFrame.setVisibility(View.VISIBLE);
+                    switches = true;
+                } else {
+                    EmployeeFrame.setVisibility(View.INVISIBLE);
+                    switches = false;
+                }
             }
         });
     }
@@ -131,38 +143,26 @@ public class AddTaskActivity extends AppCompatActivity {
         membersdata.put("id",MembersList);
     }
 
-    private void Update() {
-        DocumentReference document = db.collection("Tasks").document(DashBoardActivity.CompanyID)
-                .collection("AllTask").document(TaskID);
-        document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot documentSnapshot = task.getResult();
-                title.setText(documentSnapshot.get("title",String.class));
-                content.setText(documentSnapshot.get("content",String.class));
-                des.setText(documentSnapshot.get("des",String.class));
-                status.setText(documentSnapshot.get("status",String.class));
-                deadline.setText(documentSnapshot.get("deadline",String.class));
-                host = documentSnapshot.get("host",String.class);
-            }
-        });
-
-        document.collection("members").document("ID").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                DocumentSnapshot documentSnapshot = task.getResult();
-                List<String> memberlist = (List<String>) documentSnapshot.get("id");
-                for (int i = 0; i < EmployeeIDs.length; i++) {
-                    for (int j = 0; j < memberlist.size(); j++) {
-                        if (memberlist.get(j).equals(EmployeeIDs[i])) {
-                            CheckedEmployee[i] = true;
-                        }
-                    }
-                }
-            }
-        });
+    private void UpdateTaskDetail() {
+        title.setText(TaskDetailActivity.title);
+        content.setText(TaskDetailActivity.content);
+        des.setText(TaskDetailActivity.des);
+        status.setText(TaskDetailActivity.status);
+        deadline.setText(TaskDetailActivity.deadline);
+        host = TaskDetailActivity.HostCheck;
         AddTaskButton.setText("Update");
     }
+
+    private void UpdateCheckedEmployee() {
+        for (int i = 0; i < EmployeeIDs.length; i++) {
+            for (int j = 0; j < TaskDetailActivity.MembersIDList.length; j++) {
+                if (TaskDetailActivity.MembersIDList[j].equals(EmployeeIDs[i])) {
+                    CheckedEmployee[i] = true;
+                }
+            }
+        }
+    }
+
 
     private void onclickAdd() {
         AddTaskButton.setOnClickListener(new View.OnClickListener() {
