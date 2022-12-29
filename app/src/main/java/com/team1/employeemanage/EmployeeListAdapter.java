@@ -8,15 +8,13 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
 
-
-public class EmployeeAdapter extends ArrayAdapter {
+public class EmployeeListAdapter extends ArrayAdapter {
     private String[] EmployeeEmail;
     public static boolean[] Check;
     private Activity context;
 
-    public EmployeeAdapter(Activity context,String[] Email, boolean[] Check) {
+    public EmployeeListAdapter(Activity context,String[] Email, boolean[] Check) {
         super(context,R.layout.employee_item,Email);
         this.EmployeeEmail = Email;
         this.Check = Check;

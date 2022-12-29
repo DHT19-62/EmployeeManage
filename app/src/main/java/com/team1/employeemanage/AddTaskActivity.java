@@ -52,7 +52,7 @@ public class AddTaskActivity extends AppCompatActivity {
     private static boolean[] CheckedEmployee;
     private static String[] EmployeeIDs;
 
-    EmployeeAdapter employeeAdapter;
+    EmployeeListAdapter employeeAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +121,7 @@ public class AddTaskActivity extends AppCompatActivity {
         List<String> MembersList = new ArrayList<>();
 
         MembersList.add(LoginActivity.UserID);
-        CheckedEmployee = EmployeeAdapter.Check;
+        CheckedEmployee = EmployeeListAdapter.Check;
         for (int i = 0; i < CheckedEmployee.length; i++) {
             if (CheckedEmployee[i]) {
                 MembersList.add(EmployeeIDs[i]);
@@ -209,7 +209,7 @@ public class AddTaskActivity extends AppCompatActivity {
         CheckedEmployee = Arrays.copyOfRange(CheckedEmployee,0,counter+1);
         EmployeeIDs = Arrays.copyOfRange(EmployeeIDs,0,counter+1);
 
-        employeeAdapter = new EmployeeAdapter(this,EmployeeEmail,CheckedEmployee);
+        employeeAdapter = new EmployeeListAdapter(this,EmployeeEmail,CheckedEmployee);
         EmployeeListView.setAdapter(employeeAdapter);
     }
 
