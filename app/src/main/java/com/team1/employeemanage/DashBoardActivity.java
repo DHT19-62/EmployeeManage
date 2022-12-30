@@ -18,10 +18,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DashBoardActivity extends AppCompatActivity {
 
-     RelativeLayout btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting;
+    RelativeLayout btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting;
 
-     private static FirebaseFirestore db;
-     public static String CompanyID;
+    private static FirebaseFirestore db;
+    public static String CompanyID;
     public static String Level;
 
     @Override
