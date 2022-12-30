@@ -22,6 +22,7 @@ public class DashBoardActivity extends AppCompatActivity {
 
      private static FirebaseFirestore db;
      public static String CompanyID;
+    public static String Level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +110,8 @@ public class DashBoardActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    CompanyID = document.get("companyId",String.class);
+                    CompanyID = document.get("company",String.class);
+                    Level = document.get("level",String.class);
                     Log.d("CompanyID",CompanyID);
                 }
             }
