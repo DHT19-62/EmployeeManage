@@ -8,9 +8,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,10 +23,13 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class TaskActivity extends AppCompatActivity {
@@ -32,8 +38,8 @@ public class TaskActivity extends AppCompatActivity {
     private String[] TaskTitle;
     private String[] TaskDes;
     private String[] TaskID;
-    private static TaskAdapter taskAdapter;
 
+    private static TaskAdapter taskAdapter;
     private static FirebaseFirestore db;
     ListView listView;
 
@@ -41,11 +47,31 @@ public class TaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
-        getSupportActionBar().hide();
-
         initFireStore();
         getAllTask();
         showAllTask();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        if (DashBoardActivity.Level.equals("manager")) {
+            getMenuInflater().inflate(R.menu.taskmenu,menu);
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.addtask) {
+            Intent intent = new Intent(TaskActivity.this,AddTaskActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void initFireStore() {
@@ -116,4 +142,7 @@ public class TaskActivity extends AppCompatActivity {
         }, 2000);
     }
 
+    @Override
+    public void onBackPressed() {
+    }
 }

@@ -11,6 +11,7 @@ public class TaskAdapter extends ArrayAdapter {
     private Activity context;
     private String[] TaskTitle;
     private String[] TaskContent;
+
     public TaskAdapter(Activity context, String[] TaskTitle, String[] TaskContent){
         super(context,R.layout.task_item,TaskTitle);
         this.context = context;
