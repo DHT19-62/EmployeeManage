@@ -87,15 +87,15 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
     private void addcontrol() {
-        title = (EditText) findViewById(R.id.TitleEditText);
-        content = (EditText) findViewById(R.id.ContentEditText);
-        deadline = (EditText) findViewById(R.id.DeadlineEditText);
-        status = (EditText) findViewById(R.id.StatusEditText);
-        des = (EditText) findViewById(R.id.DesEditText);
-        AddTaskButton = (Button) findViewById(R.id.AddTaskButton);
-        EmployeeListView = (ListView) findViewById(R.id.EmployeeList);
-        Extend = (ImageView) findViewById(R.id.extend);
-        EmployeeFrame = (RelativeLayout) findViewById(R.id.EmployeeFrame);
+        title = (EditText) findViewById(R.id.EditText_AddTask_Title);
+        content = (EditText) findViewById(R.id.EditText_AddTask_Content);
+        deadline = (EditText) findViewById(R.id.EditText_AddTask_Deadline);
+        status = (EditText) findViewById(R.id.EditText_AddTask_Status);
+        des = (EditText) findViewById(R.id.EditText_AddTask_Des);
+        AddTaskButton = (Button) findViewById(R.id.Button_AddTask_AddTask);
+        EmployeeListView = (ListView) findViewById(R.id.ListView_AddTask_EmployeeList);
+        Extend = (ImageView) findViewById(R.id.ImageView_AddTask_extend);
+        EmployeeFrame = (RelativeLayout) findViewById(R.id.Relative_AddTask_EmployeeFrame);
     }
 
     private boolean switches = false;

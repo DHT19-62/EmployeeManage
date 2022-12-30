@@ -128,7 +128,7 @@ public class TaskActivity extends AppCompatActivity {
                 TaskDes = Arrays.copyOfRange(TaskDes,0,i+1);
 
                 taskAdapter = new TaskAdapter(TaskActivity.this,TaskTitle,TaskDes);
-                listView = (ListView) findViewById(R.id.TaskList);
+                listView = (ListView) findViewById(R.id.ListView_Task);
                 listView.setAdapter(taskAdapter);
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
