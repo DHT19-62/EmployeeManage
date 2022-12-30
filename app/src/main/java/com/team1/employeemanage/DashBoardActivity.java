@@ -1,27 +1,20 @@
 package com.team1.employeemanage;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Layout;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FieldValue;
 
 public class DashBoardActivity extends AppCompatActivity {
 
      RelativeLayout btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting;
-
-     private static FirebaseFirestore db;
-     public static String CompanyID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +24,8 @@ public class DashBoardActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         addControls();
-        addEvents();
 
-        initFireStore();
-        getCompanyID();
+        addEvents();
     }
 
     private void addEvents() {
@@ -95,24 +86,6 @@ public class DashBoardActivity extends AppCompatActivity {
         btn_Profile = this.<RelativeLayout>findViewById(R.id.button_Profile);
         btn_Task = this.<RelativeLayout>findViewById(R.id.button_Task);
         btn_TK = this.<RelativeLayout>findViewById(R.id.button_TimeKeeping);
-    }
 
-    private void initFireStore() {
-        FirebaseApp.initializeApp(DashBoardActivity.this);
-        db = FirebaseFirestore.getInstance();
-    }
-
-    private void getCompanyID() {
-        DocumentReference documentReference = db.collection("Users").document(LoginActivity.UserID);
-        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    CompanyID = document.get("companyId",String.class);
-                    Log.d("CompanyID",CompanyID);
-                }
-            }
-        });
     }
 }
