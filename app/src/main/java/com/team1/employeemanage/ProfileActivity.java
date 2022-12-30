@@ -15,7 +15,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-
 public class ProfileActivity extends AppCompatActivity {
 
     private String company;
@@ -87,6 +86,5 @@ public class ProfileActivity extends AppCompatActivity {
         getTaskDetail();
         //showProfile();
         getSupportActionBar().hide();
-
     }
 }
