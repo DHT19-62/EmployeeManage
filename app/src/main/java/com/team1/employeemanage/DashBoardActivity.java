@@ -33,8 +33,8 @@ public class DashBoardActivity extends AppCompatActivity {
         addControls();
         addEvents();
 
-        initFireStore();
-        getCompanyID();
+//        initFireStore();
+//        getCompanyID();
     }
 
     private void addEvents() {
