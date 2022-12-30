@@ -41,13 +41,10 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Employee employee = lst_employees.get(position);
-<<<<<<< HEAD
         holder.name.setText(employee.getFirstname() +" "+employee.getLastname());
         holder.email.setText(employee.getEmail());
-=======
         holder.lastname.setText(employee.getLastname());
         holder.firstname.setText(employee.getFirstname());
->>>>>>> master
 
     }
 
@@ -58,32 +55,23 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private View itemview;
-<<<<<<< HEAD
-
         public TextView name, email;
-=======
         public TextView firstname;
         public TextView lastname;
->>>>>>> master
         public Button delete;
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemview = itemView;
-<<<<<<< HEAD
-
             addControls();
             addEvents();
 
         }
 
         private void addEvents() {
-=======
             firstname = itemView.findViewById(R.id.textView_createaccount_firstname);
             lastname = itemView.findViewById(R.id.textView_createaccount_lastname);
             delete = itemView.findViewById(R.id.button_employeeitem_delete);
-
->>>>>>> master
             //Xử lý khi nút Chi tiết được bấm
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,14 +82,12 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
                 }
             });
         }
-<<<<<<< HEAD
 
         private void addControls() {
             name = this.itemView.<TextView>findViewById(R.id.textView_employeeitem_name);
             email = this.itemview.<TextView>findViewById(R.id.textView_employeeitem_email);
             delete = this.itemView.<Button>findViewById(R.id.button_employeeitem_delete);
         }
-=======
->>>>>>> master
+
     }
 }
