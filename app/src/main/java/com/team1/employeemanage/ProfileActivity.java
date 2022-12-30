@@ -54,7 +54,6 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-
     private void showProfile() {
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
