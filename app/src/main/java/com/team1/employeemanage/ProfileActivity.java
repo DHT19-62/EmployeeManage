@@ -86,5 +86,8 @@ public class ProfileActivity extends AppCompatActivity {
         getTaskDetail();
         //showProfile();
         getSupportActionBar().hide();
+
+
+
     }
 }

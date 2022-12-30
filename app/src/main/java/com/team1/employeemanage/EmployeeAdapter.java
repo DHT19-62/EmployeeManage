@@ -43,6 +43,8 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
         Employee employee = lst_employees.get(position);
         holder.name.setText(employee.getFirstname() +" "+employee.getLastname());
         holder.email.setText(employee.getEmail());
+        holder.lastname.setText(employee.getLastname());
+        holder.firstname.setText(employee.getFirstname());
 
     }
 
@@ -53,20 +55,23 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private View itemview;
-
         public TextView name, email;
+        public TextView firstname;
+        public TextView lastname;
         public Button delete;
 
         public ViewHolder(View itemView) {
             super(itemView);
             itemview = itemView;
-
             addControls();
             addEvents();
 
         }
 
         private void addEvents() {
+            firstname = itemView.findViewById(R.id.textView_createaccount_firstname);
+            lastname = itemView.findViewById(R.id.textView_createaccount_lastname);
+            delete = itemView.findViewById(R.id.button_employeeitem_delete);
             //Xử lý khi nút Chi tiết được bấm
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -83,5 +88,6 @@ public class EmployeeAdapter extends RecyclerView.Adapter<EmployeeAdapter.ViewHo
             email = this.itemview.<TextView>findViewById(R.id.textView_employeeitem_email);
             delete = this.itemView.<Button>findViewById(R.id.button_employeeitem_delete);
         }
+
     }
 }
