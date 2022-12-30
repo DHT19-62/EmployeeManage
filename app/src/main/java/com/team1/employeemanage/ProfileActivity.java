@@ -87,7 +87,5 @@ public class ProfileActivity extends AppCompatActivity {
         //showProfile();
         getSupportActionBar().hide();
 
-
-
     }
 }
