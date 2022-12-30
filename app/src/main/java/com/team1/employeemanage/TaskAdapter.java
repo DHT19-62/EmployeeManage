@@ -23,10 +23,10 @@ public class TaskAdapter extends ArrayAdapter {
         LayoutInflater inflater = context.getLayoutInflater();
         View rowView=inflater.inflate(R.layout.task_item, null,true);
 
-        TextView textView = (TextView) rowView.findViewById(R.id.TaskTitle);
+        TextView textView = (TextView) rowView.findViewById(R.id.TextView_TaskItem_TaskTitle);
         textView.setText(TaskTitle[position]);
 
-        textView = (TextView) rowView.findViewById(R.id.TaskContent);
+        textView = (TextView) rowView.findViewById(R.id.TextView_TaskItem_TaskContent);
         textView.setText(TaskContent[position]);
         return rowView;
     }

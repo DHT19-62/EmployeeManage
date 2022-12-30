@@ -139,15 +139,15 @@ public class TaskDetailActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                textView = (TextView) findViewById(R.id.Title);
+                textView = (TextView) findViewById(R.id.TextView_TaskDetail_Title);
                 textView.setText(title);
-                textView = (TextView) findViewById(R.id.Host);
+                textView = (TextView) findViewById(R.id.TextView_TaskDetail_Host);
                 textView.setText(host);
-                textView = (TextView) findViewById(R.id.Content);
+                textView = (TextView) findViewById(R.id.TextView_TaskDetail_Content);
                 textView.setText(content);
-                textView = (TextView) findViewById(R.id.Status);
+                textView = (TextView) findViewById(R.id.TextView_TaskDetail_Status);
                 textView.setText(status);
-                textView = (TextView) findViewById(R.id.Deadline);
+                textView = (TextView) findViewById(R.id.TextView_TaskDetail_Deadline);
                 textView.setText(deadline);
                 getEmailList();
                 onclickshowMembers();
@@ -186,11 +186,11 @@ public class TaskDetailActivity extends AppCompatActivity {
 
     private boolean switches = false;
     private void onclickshowMembers() {
-        imageView = (ImageView) findViewById(R.id.extend);
+        imageView = (ImageView) findViewById(R.id.TextView_TaskDetail_extend);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                relativeLayout = (RelativeLayout) findViewById(R.id.EmployeeFrame);
+                relativeLayout = (RelativeLayout) findViewById(R.id.Relative_TaskDetail_EmployeeFrame);
                 if (switches == false) {
                     relativeLayout.setVisibility(View.VISIBLE);
                     switches = true;
@@ -209,7 +209,7 @@ public class TaskDetailActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Log.d("Meme","List: " + EmployeeList[0]);
-                listView = (ListView) findViewById(R.id.EmployeeList);
+                listView = (ListView) findViewById(R.id.ListView_TaskDetail_EmployeeList);
                 employeeListAdapter = new EmployeeListAdapter(TaskDetailActivity.this,EmployeeList,Check);
                 listView.setAdapter(employeeListAdapter);
             }

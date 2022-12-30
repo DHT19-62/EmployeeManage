@@ -18,7 +18,7 @@
             android:textSize="25sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/TitleEditText"
+            android:id="@+id/EditText_AddTask_Title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/content_frame"
@@ -32,7 +32,7 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/DesEditText"
+            android:id="@+id/EditText_AddTask_Des"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/content_frame"
@@ -46,7 +46,7 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/ContentEditText"
+            android:id="@+id/EditText_AddTask_Content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/content_frame"
@@ -63,7 +63,7 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/DeadlineEditText"
+            android:id="@+id/EditText_AddTask_Deadline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/content_frame"
@@ -77,7 +77,7 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
         <EditText
-            android:id="@+id/StatusEditText"
+            android:id="@+id/EditText_AddTask_Status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/content_frame"
@@ -96,7 +96,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"/>
             <ImageView
-                android:id="@+id/extend"
+                android:id="@+id/ImageView_AddTask_extend"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:src="@drawable/extend"
@@ -105,20 +105,20 @@
 
 
         <RelativeLayout
-            android:id="@+id/EmployeeFrame"
+            android:id="@+id/Relative_AddTask_EmployeeFrame"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/content_frame"
             android:visibility="invisible">
             <ListView
-                android:id="@+id/EmployeeList"
+                android:id="@+id/ListView_AddTask_EmployeeList"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:choiceMode="multipleChoice"/>
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/AddTaskButton"
+            android:id="@+id/Button_AddTask_AddTask"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"

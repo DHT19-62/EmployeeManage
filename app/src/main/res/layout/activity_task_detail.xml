@@ -9,7 +9,7 @@
     tools:context=".TaskDetailActivity">
 
     <TextView
-        android:id="@+id/Title"
+        android:id="@+id/TextView_TaskDetail_Title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
@@ -33,7 +33,7 @@
             android:textStyle="bold"/>
 
         <TextView
-            android:id="@+id/Host"
+            android:id="@+id/TextView_TaskDetail_Host"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="5dp"
@@ -57,7 +57,7 @@
             android:textSize="20sp"
             android:textStyle="bold"/>
         <TextView
-            android:id="@+id/Content"
+            android:id="@+id/TextView_TaskDetail_Content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/content_frame"
@@ -78,7 +78,7 @@
             android:textSize="17sp"
             android:textStyle="bold"/>
         <TextView
-            android:id="@+id/Status"
+            android:id="@+id/TextView_TaskDetail_Status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/content_frame"
@@ -101,7 +101,7 @@
             android:textSize="17sp"
             android:textStyle="bold"/>
         <TextView
-            android:id="@+id/Deadline"
+            android:id="@+id/TextView_TaskDetail_Deadline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/content_frame"
@@ -124,20 +124,20 @@
             android:textSize="17sp"
             android:textStyle="bold"/>
         <ImageView
-            android:id="@+id/extend"
+            android:id="@+id/TextView_TaskDetail_extend"
             android:layout_width="15dp"
             android:layout_height="15dp"
             android:src="@drawable/down_arrow"
             android:layout_gravity="center"/>
     </LinearLayout>
     <RelativeLayout
-        android:id="@+id/EmployeeFrame"
+        android:id="@+id/Relative_TaskDetail_EmployeeFrame"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/content_frame"
         android:visibility="invisible">
         <ListView
-            android:id="@+id/EmployeeList"
+            android:id="@+id/ListView_TaskDetail_EmployeeList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:choiceMode="multipleChoice"/>
