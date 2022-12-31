@@ -42,11 +42,11 @@ public class ProfileActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         company = "Company: " + document.get("company",String.class);
-                        email = "Email: " + document.get("email",String.class);
-                        firstname = "Firstname: " + document.get("firstname",String.class);
-                        lastname = "Lastname: " + document.get("lastname",String.class);
                         id = "Id: " + document.get("id",String.class);
                         level = "Level: " + document.get("level",String.class);
+                        firstname = "Firstname: " + document.get("firstname",String.class);
+                        lastname = "Lastname: " + document.get("lastname",String.class);
+                        email = "Email: " + document.get("email",String.class);
                         password = "Password: " + document.get("password",String.class);
                     }
                 }
@@ -54,29 +54,28 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-
-//    private void showProfile() {
-//        Handler handler = new Handler();
-//        handler.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                textView = (TextView) findViewById(R.id.Company);
-//                textView.setText(company);
-//                textView = (TextView) findViewById(R.id.Email);
-//                textView.setText(email);
-//                textView = (TextView) findViewById(R.id.Firstname);
-//                textView.setText(firstname);
-//                textView = (TextView) findViewById(R.id.Lastname);
-//                textView.setText(lastname);
-//                textView = (TextView) findViewById(R.id.Id);
-//                textView.setText(id);
-//                textView = (TextView) findViewById(R.id.Level);
-//                textView.setText(level);
-//                textView = (TextView) findViewById(R.id.Password);
-//                textView.setText(password);
-//            }
-//        }, 2000);
-//    }
+    private void showProfile() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                textView = (TextView) findViewById(R.id.text_Profile_Id);
+                textView.setText(id);
+                textView = (TextView) findViewById(R.id.text_Profile_Company);
+                textView.setText(company);
+                textView = (TextView) findViewById(R.id.text_Profile_Firstname);
+                textView.setText(firstname);
+                textView = (TextView) findViewById(R.id.text_Profile_Lastname);
+                textView.setText(lastname);
+                textView = (TextView) findViewById(R.id.text_Profile_Level);
+                textView.setText(level);
+                textView = (TextView) findViewById(R.id.text_Profile_Email);
+                textView.setText(email);
+                textView = (TextView) findViewById(R.id.text_Profile_Password);
+                textView.setText(password);
+            }
+        }, 2000);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +84,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         initFireStore();
         getTaskDetail();
-        //showProfile();
+        showProfile();
         getSupportActionBar().hide();
 
     }

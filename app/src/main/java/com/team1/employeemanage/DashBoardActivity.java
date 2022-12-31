@@ -18,10 +18,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class DashBoardActivity extends AppCompatActivity {
 
-     RelativeLayout btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting;
+    RelativeLayout btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting;
 
-     private static FirebaseFirestore db;
-     public static String CompanyID;
+    private static FirebaseFirestore db;
+    public static String CompanyID;
+    public static String Level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,7 +110,8 @@ public class DashBoardActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    CompanyID = document.get("companyId",String.class);
+                    CompanyID = document.get("company",String.class);
+                    Level = document.get("level",String.class);
                     Log.d("CompanyID",CompanyID);
                 }
             }
