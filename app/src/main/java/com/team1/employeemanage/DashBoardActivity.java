@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -30,14 +31,22 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board);
 
         getSupportActionBar().hide();
-
-        addControls();
-        addEvents();
-
         initFireStore();
         getCompanyID();
+
+        showOptions();
     }
 
+    private void showOptions() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                addControls();
+                addEvents();
+            }
+        },2000);
+    }
     private void addEvents() {
         btn_Chat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,13 +64,15 @@ public class DashBoardActivity extends AppCompatActivity {
             }
         });
 
-        btn_Employee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(DashBoardActivity.this, EmployeeActivity.class);
-                startActivity(intent);
-            }
-        });
+        if (Level.equals("manager")) {
+            btn_Employee.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(DashBoardActivity.this, EmployeeActivity.class);
+                    startActivity(intent);
+                }
+            });
+        } else btn_Employee.setForeground(getDrawable(R.color.shadow));
 
         btn_Profile.setOnClickListener(new View.OnClickListener() {
             @Override
