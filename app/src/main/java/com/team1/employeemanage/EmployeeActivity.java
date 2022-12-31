@@ -8,9 +8,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,14 +31,13 @@ import java.util.ArrayList;
 public class EmployeeActivity extends AppCompatActivity {
 
     ArrayList<Employee> lst_employees;
-    FirebaseAuth mAuth;
     FirebaseFirestore db;
 
     RecyclerView recyclerView;
     Button button_refresh;
     EmployeeAdapter employeeAdapter;
     TextView txtView_employee;
-    String id_company;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +48,8 @@ public class EmployeeActivity extends AppCompatActivity {
 
         addControls();
 
-        LoadIdcompany();
         addEvents();
-        Looademployee(id_company);
+
     }
 
     private void Looademployee(String id_company) {
@@ -66,10 +66,10 @@ public class EmployeeActivity extends AppCompatActivity {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                                 String firstname_ = document.get("firstname").toString();
                                 String lastname_ = document.get("lastname").toString();
-                                String id_ = document.get("id").toString();
-                                addEmployee(new Employee(firstname_, lastname_, id_));
+                                String email_ = document.get("email").toString();
+                                String id_ = document.getId();
+                                addEmployee(new Employee(firstname_, lastname_, email_, id_));
                             }
-                            employeeAdapter.notifyDataSetChanged();
                         } else {
 
                         }
@@ -86,73 +86,43 @@ public class EmployeeActivity extends AppCompatActivity {
         button_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Loademployee();
+                Looademployee(DashBoardActivity.getCID());
+                Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        employeeAdapter.notifyDataSetChanged();
+                    }
+                }, MainActivity.getDelaytime());
             }
         });
     }
 
-    private void Loademployee() {
-        lst_employees.clear();
-        FirebaseFirestore.getInstance()
-                .collection("Users")
-                .whereEqualTo("company", id_company)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                String firstname_ = document.get("firstname").toString();
-                                String lastname_ = document.get("lastname").toString();
-                                String email_ = document.get("email").toString();
-                                String id_ = document.getId().toString();
-                                addEmployee(new Employee(firstname_, lastname_, email_, id_));
-                            }
-                            employeeAdapter.notifyDataSetChanged();
-                        } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
-                        }
-                    }
-                });
-    }
+
+
 
 
     private void addControls() {
 
         button_refresh = this.<Button>findViewById(R.id.button_employee_Refresh);
+        progressBar = this.<ProgressBar>findViewById(R.id.progress_circular_employee);
         txtView_employee = this.<TextView>findViewById(R.id.textView_employee_Employee);
 
         recyclerView = this.<RecyclerView>findViewById(R.id.recylerview_employee);
         lst_employees = new ArrayList<Employee>();
-        employeeAdapter = new EmployeeAdapter(lst_employees, this);
-        recyclerView.setAdapter(employeeAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
+        Looademployee(DashBoardActivity.getCID());
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progressBar.setVisibility(View.GONE);
+                employeeAdapter = new EmployeeAdapter(lst_employees, EmployeeActivity.this);
+                recyclerView.setAdapter(employeeAdapter);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(EmployeeActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        }, MainActivity.getDelaytime());
 
-    }
-
-
-    private void LoadIdcompany() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.d(TAG, "id user: " + user.getUid().toString());
-        db = FirebaseFirestore.getInstance();
-        db.collection("Users").document(user.getUid().toString())
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        DocumentSnapshot documentSnapshot = task.getResult();
-                        if (task.isSuccessful()) {
-                            setId_company((String) documentSnapshot.get("company"));
-                        }
-                    }
-                });
-    }
-
-    public void setId_company(String id_company) {
-        this.id_company = id_company;
-        Log.d(TAG, "xxx: " + id_company);
     }
 
     public void addEmployee(Employee employee) {

@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText username, password;
     TextView createaccount;
     private Button btn_SignIn;
-    public static String UserID;
+    private static String UserID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,5 +109,13 @@ public class LoginActivity extends AppCompatActivity {
         username = this.<EditText>findViewById(R.id.editText_UserName_Login);
         password = this.<EditText>findViewById(R.id.editText_Password_Login);
         createaccount = findViewById(R.id.textView_SignUp_Login);
+    }
+
+    public static String getUserID() {
+        return UserID;
+    }
+
+    public static void setUserID(String userID) {
+        UserID = userID;
     }
 }

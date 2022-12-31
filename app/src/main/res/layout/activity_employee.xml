@@ -25,6 +25,12 @@
         android:layout_marginRight="10dp"
         android:text="refresh"/>
 
+    <ProgressBar
+        android:id="@+id/progress_circular_employee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+
     <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/recylerview_employee"
     android:layout_width="match_parent"

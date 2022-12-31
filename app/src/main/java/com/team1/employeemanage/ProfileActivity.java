@@ -44,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void getTaskDetail() {
-        DocumentReference docRef = mAuth.collection("Users").document(LoginActivity.UserID);
+        DocumentReference docRef = mAuth.collection("Users").document(LoginActivity.getUserID());
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -52,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         company = document.get("company",String.class);
-                        id = LoginActivity.UserID;
+                        id = LoginActivity.getUserID();
                         level = document.get("level",String.class);
                         fullname = document.get("lastname",String.class) + " " + document.get("firstname",String.class);
                         email = document.get("email",String.class);
@@ -136,13 +136,13 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void run() {
                 if (checkCompany) {
-                    mAuth.collection("Users").document(LoginActivity.UserID).update("company", ID);
+                    mAuth.collection("Users").document(LoginActivity.getUserID()).update("company", ID);
                     startActivity(new Intent(ProfileActivity.this, DashBoardActivity.class));
                 } else {
                     Toast.makeText(ProfileActivity.this,"Wrong Company ID",Toast.LENGTH_SHORT).show();
                 }
             }
-        },2000);
+        }, MainActivity.getDelaytime());
     }
 
     @Override

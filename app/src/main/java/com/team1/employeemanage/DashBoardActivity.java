@@ -22,8 +22,8 @@ public class DashBoardActivity extends AppCompatActivity {
     RelativeLayout btn_Task, btn_Employee, btn_Chat, btn_Profile, btn_TK, btn_Setting;
 
     private static FirebaseFirestore db;
-    public static String CompanyID;
-    public static String Level;
+    private static String CompanyID;
+    private static String Level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +31,7 @@ public class DashBoardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dash_board);
 
         getSupportActionBar().hide();
+
         initFireStore();
         getCompanyID();
 
@@ -45,7 +46,7 @@ public class DashBoardActivity extends AppCompatActivity {
                 addControls();
                 addEvents();
             }
-        },2000);
+        }, MainActivity.getDelaytime());
     }
     private void addEvents() {
         btn_Chat.setOnClickListener(new View.OnClickListener() {
@@ -115,17 +116,25 @@ public class DashBoardActivity extends AppCompatActivity {
     }
 
     private void getCompanyID() {
-        DocumentReference documentReference = db.collection("Users").document(LoginActivity.UserID);
+        DocumentReference documentReference = db.collection("Users").document(LoginActivity.getUserID());
         documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     CompanyID = document.get("company",String.class);
-                    Level = document.get("level",String.class);
+                    Level = document.get("level", String.class);
                     Log.d("CompanyID",CompanyID);
                 }
             }
         });
+    }
+
+    public static String getLevel() {
+        return Level;
+    }
+
+    public static String getCID(){
+        return CompanyID;
     }
 }

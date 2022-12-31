@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,6 +31,7 @@ import java.util.List;
 
 public class TaskActivity extends AppCompatActivity {
     private static boolean check = false;
+    private ProgressBar progressBar;
     private Integer i = -1;
     private String[] TaskTitle;
     private String[] TaskDes;
@@ -43,6 +45,7 @@ public class TaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_task);
+        progressBar = this.<ProgressBar>findViewById(R.id.progress_circular_task);
         initFireStore();
         getAllTask();
         showAllTask();
@@ -55,7 +58,7 @@ public class TaskActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (DashBoardActivity.Level.equals("manager")) {
+        if (DashBoardActivity.getLevel().equals("manager")) {
             getMenuInflater().inflate(R.menu.taskmenu,menu);
         }
         return super.onCreateOptionsMenu(menu);
@@ -76,7 +79,7 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     private void getAllTask() {
-        db.collection("Tasks").document(DashBoardActivity.CompanyID).collection("AllTask").
+        db.collection("Tasks").document(DashBoardActivity.getCID()).collection("AllTask").
                 get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -85,7 +88,7 @@ public class TaskActivity extends AppCompatActivity {
                             TaskDes = new String[task.getResult().size()];
                             TaskID = new String[task.getResult().size()];
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                db.collection("Tasks").document(DashBoardActivity.CompanyID).collection("AllTask")
+                                db.collection("Tasks").document(DashBoardActivity.getCID()).collection("AllTask")
                                         .document(document.getId()).collection("members").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                             @Override
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -93,7 +96,7 @@ public class TaskActivity extends AppCompatActivity {
                                                     for (QueryDocumentSnapshot documentSnapshot: task.getResult()){
                                                         List<String> membergroup = (List<String>) documentSnapshot.get("id");
                                                         for (int j = 0; j < membergroup.size(); j++) {
-                                                            if (membergroup.get(j).equals(LoginActivity.UserID)){
+                                                            if (membergroup.get(j).equals(LoginActivity.getUserID())){
                                                                 check = true;
                                                             }
                                                         }
@@ -115,6 +118,7 @@ public class TaskActivity extends AppCompatActivity {
     }
 
     private void showAllTask() {
+        progressBar.setVisibility(View.GONE);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -135,10 +139,7 @@ public class TaskActivity extends AppCompatActivity {
                     }
                 });
             }
-        }, 2000);
+        }, MainActivity.getDelaytime()*2);
     }
 
-    @Override
-    public void onBackPressed() {
-    }
 }

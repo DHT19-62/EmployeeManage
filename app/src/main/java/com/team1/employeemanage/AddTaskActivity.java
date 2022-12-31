@@ -124,12 +124,12 @@ public class AddTaskActivity extends AppCompatActivity {
         data.put("status",status.getText().toString());
         data.put("deadline",deadline.getText().toString());
         if (TaskID == null) {
-            host = LoginActivity.UserID;
+            host = LoginActivity.getUserID();
         }
         data.put("host",host);
         List<String> MembersList = new ArrayList<>();
 
-        MembersList.add(LoginActivity.UserID);
+        MembersList.add(LoginActivity.getUserID());
         CheckedEmployee = EmployeeListAdapter.Check;
         for (int i = 0; i < CheckedEmployee.length; i++) {
             if (CheckedEmployee[i]) {
@@ -168,10 +168,10 @@ public class AddTaskActivity extends AppCompatActivity {
                 setData();
                 DocumentReference document;
                 if (TaskID == null) {
-                    document = db.collection("Tasks").document(DashBoardActivity.CompanyID)
+                    document = db.collection("Tasks").document(DashBoardActivity.getCID())
                             .collection("AllTask").document();
                 } else {
-                    document = db.collection("Tasks").document(DashBoardActivity.CompanyID)
+                    document = db.collection("Tasks").document(DashBoardActivity.getCID())
                             .collection("AllTask").document(TaskID);
                 }
                 document.set(data);
@@ -190,7 +190,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 CheckedEmployee = new boolean[task.getResult().size()];
                 EmployeeIDs = new String[task.getResult().size()];
                 for (QueryDocumentSnapshot document : task.getResult()) {
-                    if ((document.get("company",String.class).equals(DashBoardActivity.CompanyID)) && !(document.getId().equals(LoginActivity.UserID))) {
+                    if ((document.get("company",String.class).equals(DashBoardActivity.getCID())) && !(document.getId().equals(LoginActivity.getUserID()))) {
                         counter++;
                         EmployeeIDs[counter] = document.getId();
                         EmployeeEmail[counter] = document.get("email",String.class);

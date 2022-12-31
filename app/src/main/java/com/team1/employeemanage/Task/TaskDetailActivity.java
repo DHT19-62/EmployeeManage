@@ -69,7 +69,7 @@ public class TaskDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (DashBoardActivity.Level.equals("manager")) {
+        if (DashBoardActivity.getLevel().equals("manager")) {
             getMenuInflater().inflate(R.menu.taskdetialmenu,menu);
         }
         return super.onCreateOptionsMenu(menu);
@@ -77,7 +77,7 @@ public class TaskDetailActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (HostCheck.equals(LoginActivity.UserID)) {
+        if (HostCheck.equals(LoginActivity.getUserID())) {
             if (item.getItemId() == R.id.deletetask) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(TaskDetailActivity.this);
                 alertDialog.setTitle("Thông báo");
@@ -91,7 +91,7 @@ public class TaskDetailActivity extends AppCompatActivity {
                 alertDialog.setNegativeButton("Có", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        db.collection("Tasks").document(DashBoardActivity.CompanyID)
+                        db.collection("Tasks").document(DashBoardActivity.getCID())
                                 .collection("AllTask").document(TaskID).delete();
                         startActivity(new Intent(TaskDetailActivity.this, TaskActivity.class));
                     }
@@ -116,7 +116,7 @@ public class TaskDetailActivity extends AppCompatActivity {
     }
 
     private void getTaskDetail() {
-        DocumentReference docRef = db.collection("Tasks").document(DashBoardActivity.CompanyID)
+        DocumentReference docRef = db.collection("Tasks").document(DashBoardActivity.getCID())
                 .collection("AllTask").document(TaskID);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
