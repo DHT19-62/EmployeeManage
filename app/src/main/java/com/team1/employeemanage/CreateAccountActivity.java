@@ -47,7 +47,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         addControls();
-
         addEvents();
     }
 
@@ -150,5 +149,9 @@ public class CreateAccountActivity extends AppCompatActivity {
         checkBox_employee.setChecked(true);
         checkBox_manager = this.<CheckBox>findViewById(R.id.checkbox_createaccount_manager);
         signin = this.<Button>findViewById(R.id.button_createaccount_signin);
+    }
+
+    @Override
+    public void onBackPressed() {
     }
 }

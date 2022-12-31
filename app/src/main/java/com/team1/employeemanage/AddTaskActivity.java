@@ -54,6 +54,7 @@ public class AddTaskActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
+        getSupportActionBar().hide();
         TaskID = getIntent().getStringExtra("TaskID");
 
         addcontrol();

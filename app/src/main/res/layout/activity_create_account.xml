@@ -28,6 +28,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_createaccount_firstname"
+                android:textAlignment="center"
                 android:textSize="15sp"/>
 
             <TextView
@@ -43,6 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_createaccount_lastname"
+                android:textAlignment="center"
                 android:textSize="15sp" />
 
             <TextView
@@ -59,6 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_createaccount_email"
+                android:textAlignment="center"
                 android:textSize="15sp" />
 
             <TextView
@@ -74,6 +77,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_createaccount_password"
+                android:textAlignment="center"
                 android:textSize="15sp" />
 
             <TextView
@@ -89,6 +93,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/textView_createaccount_repassword"
+                android:textAlignment="center"
                 android:textSize="15sp" />
 
             <LinearLayout
