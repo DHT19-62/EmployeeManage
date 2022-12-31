@@ -3,6 +3,8 @@ package com.team1.employeemanage.Task;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -77,9 +79,24 @@ public class TaskDetailActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (HostCheck.equals(LoginActivity.UserID)) {
             if (item.getItemId() == R.id.deletetask) {
-                db.collection("Tasks").document(DashBoardActivity.CompanyID)
-                        .collection("AllTask").document(TaskID).delete();
-                startActivity(new Intent(TaskDetailActivity.this, TaskActivity.class));
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(TaskDetailActivity.this);
+                alertDialog.setTitle("Thông báo");
+                alertDialog.setPositiveButton("Không", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                alertDialog.setMessage("Bạn có muốn xóa nhiệm vụ này không?");
+                alertDialog.setNegativeButton("Có", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        db.collection("Tasks").document(DashBoardActivity.CompanyID)
+                                .collection("AllTask").document(TaskID).delete();
+                        startActivity(new Intent(TaskDetailActivity.this, TaskActivity.class));
+                    }
+                });
+                alertDialog.show();
             }
 
             if (item.getItemId() == R.id.updatetask) {
