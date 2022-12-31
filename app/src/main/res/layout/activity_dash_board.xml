@@ -11,6 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:orientation="vertical"
         android:gravity="top">
 
@@ -19,13 +20,16 @@
             android:layout_height="wrap_content"
             android:text="Dash Board"
             android:textAlignment="center"
-            android:textSize="25sp"
+            android:layout_margin="25sp"
+            android:textSize="40sp"
             android:textStyle="bold" />
 
         <RelativeLayout
             android:id="@+id/button_Task"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/task_frame"
+            android:layout_marginBottom="5dp"
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -42,13 +46,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Task"
-                android:textSize="20dp"/>
+                android:textColor="@color/white"
+                android:textSize="25sp"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/button_Employee"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/login_frame"
+            android:layout_marginBottom="5dp"
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -64,13 +71,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Employee"
-                android:textSize="20dp"/>
+                android:textColor="@color/white"
+                android:textSize="25sp"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/button_Chat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/task_frame"
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -86,13 +96,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Chat"
-                android:textSize="20dp"/>
+                android:textColor="@color/white"
+                android:textSize="25sp"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/button_Profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/login_frame"
+            android:layout_marginBottom="5dp"
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -108,13 +121,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Your profile"
-                android:textSize="20dp"/>
+                android:textColor="@color/white"
+                android:textSize="25sp"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/button_TimeKeeping"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/task_frame"
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -130,13 +146,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Time Keeping"
-                android:textSize="20dp"/>
+                android:textColor="@color/white"
+                android:textSize="25sp"/>
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/button_Setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/login_frame"
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -152,7 +170,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Setting"
-                android:textSize="20dp"/>
+                android:textColor="@color/white"
+                android:textSize="25sp"/>
         </RelativeLayout>
 
     </LinearLayout>

@@ -35,7 +35,7 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     private CheckBox checkBox_employee, checkBox_manager;
 
-    private Button signin;
+    private Button signin,cancel;
 
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
@@ -55,6 +55,13 @@ public class CreateAccountActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 createaccount();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateAccountActivity.this,LoginActivity.class));
             }
         });
 
@@ -149,6 +156,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         checkBox_employee.setChecked(true);
         checkBox_manager = this.<CheckBox>findViewById(R.id.checkbox_createaccount_manager);
         signin = this.<Button>findViewById(R.id.button_createaccount_signin);
+        cancel = this.<Button>findViewById(R.id.button_createaccount_cancel);
     }
 
     @Override
