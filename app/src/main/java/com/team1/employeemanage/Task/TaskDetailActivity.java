@@ -1,11 +1,9 @@
-package com.team1.employeemanage;
+package com.team1.employeemanage.Task;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.DrawableContainer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -24,6 +22,12 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.team1.employeemanage.AddTaskActivity;
+import com.team1.employeemanage.DashBoardActivity;
+import com.team1.employeemanage.Employee.EmployeeListAdapter;
+import com.team1.employeemanage.LoginActivity;
+import com.team1.employeemanage.R;
+import com.team1.employeemanage.TaskActivity;
 
 import java.util.List;
 

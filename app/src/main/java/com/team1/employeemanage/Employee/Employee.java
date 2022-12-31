@@ -1,4 +1,4 @@
-package com.team1.employeemanage;
+package com.team1.employeemanage.Employee;
 
 public class Employee {
     private String firstname;

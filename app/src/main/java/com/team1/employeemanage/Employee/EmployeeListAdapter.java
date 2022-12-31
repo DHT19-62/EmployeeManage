@@ -1,4 +1,4 @@
-package com.team1.employeemanage;
+package com.team1.employeemanage.Employee;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import com.team1.employeemanage.R;
+
 
 public class EmployeeListAdapter extends ArrayAdapter {
     private String[] EmployeeEmail;
@@ -15,7 +17,7 @@ public class EmployeeListAdapter extends ArrayAdapter {
     private Activity context;
 
     public EmployeeListAdapter(Activity context,String[] Email, boolean[] Check) {
-        super(context,R.layout.employee_item,Email);
+        super(context, R.layout.employee_item,Email);
         this.EmployeeEmail = Email;
         this.Check = Check;
         this.context = context;

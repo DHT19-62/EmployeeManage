@@ -1,4 +1,4 @@
-package com.team1.employeemanage;
+package com.team1.employeemanage.Task;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,13 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.team1.employeemanage.R;
+
 public class TaskAdapter extends ArrayAdapter {
     private Activity context;
     private String[] TaskTitle;
     private String[] TaskContent;
 
     public TaskAdapter(Activity context, String[] TaskTitle, String[] TaskContent){
-        super(context,R.layout.task_item,TaskTitle);
+        super(context, R.layout.task_item,TaskTitle);
         this.context = context;
         this.TaskTitle = TaskTitle;
         this.TaskContent = TaskContent;

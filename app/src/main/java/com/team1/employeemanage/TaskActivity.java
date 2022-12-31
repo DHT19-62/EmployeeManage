@@ -6,14 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,13 +21,11 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.SetOptions;
+import com.team1.employeemanage.Task.TaskAdapter;
+import com.team1.employeemanage.Task.TaskDetailActivity;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class TaskActivity extends AppCompatActivity {
@@ -133,7 +129,7 @@ public class TaskActivity extends AppCompatActivity {
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                        Intent intent = new Intent(TaskActivity.this,TaskDetailActivity.class);
+                        Intent intent = new Intent(TaskActivity.this, TaskDetailActivity.class);
                         intent.putExtra("TaskID",TaskID[position]);
                         startActivity(intent);
                     }
